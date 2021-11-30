@@ -1,16 +1,8 @@
-import * as THREE from "three";
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  PerspectiveCamera,
-  RoundedBox,
-  Environment,
-  useTexture,
-  useAspect,
-} from "@react-three/drei";
-import { Physics, useSphere, useBox, usePlane } from "@react-three/cannon";
+import { Canvas } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
+import { Physics } from "@react-three/cannon";
 import { BallAndCollisions } from "./BallAndCollisions";
-import { Paddle } from "./Blocks/Paddle";
+import { ESide, Paddle } from "./Blocks/Paddle";
 import { Block } from "./Blocks/Block";
 import { Background } from "./Backgound";
 import { MovingBlock } from "./Blocks/MovingBlock";
@@ -19,10 +11,14 @@ export const PinBall = () => (
   <Canvas dpr={1.5} camera={{ position: [0, 2, 12], fov: 50 }}>
     <Physics iterations={5} gravity={[0, -30, 0]}>
       <BallAndCollisions />
-      <Paddle />
+
+      <Paddle side={ESide.LEFT} />
+      <Paddle side={ESide.RIGHT} />
+
       {
         Array.from({ length: 6 }, (_, i) => <MovingBlock key={i} position={[0, 1 + i * 4.5, 0]} offset={10000 * i} />) /* prettier-ignore */
       }
+
       <Block
         args={[10, 1.5, 4]}
         position={[-11, -7, 0]}
