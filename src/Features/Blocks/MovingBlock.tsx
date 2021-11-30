@@ -26,7 +26,7 @@ export function MovingBlock({
   return (
     <Block
       ref={api}
-      args={[3, 1.5, 4]}
+      dimensions={[3, 1.5, 4]}
       material={{ restitution: 1.1 }}
       {...props}
     />

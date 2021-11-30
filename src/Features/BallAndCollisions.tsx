@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import { usePlane, useSphere } from "@react-three/cannon";
 import { PerspectiveCamera, useTexture } from "@react-three/drei";
 import { Vector } from "three";
-import { PerspectiveCameraProps } from "@react-three/fiber";
 
 interface IBallAndCollisions {
   args?: [
@@ -33,7 +32,7 @@ export function BallAndCollisions({
   usePlane(() => ({
     position: [0, -15, 0],
     rotation: [-Math.PI / 2, 0, 0],
-    onCollide: () => (api.position.set(0, 0, 0), api.velocity.set(0, 0, 0)),
+    onCollide: () => (api.position.set(0, 0, 0), api.velocity.set(10, 0, 0)),
   }));
 
   usePlane(() => ({
@@ -63,7 +62,8 @@ export function BallAndCollisions({
   }, []);
   return (
     <>
-      <PerspectiveCamera ref={cam} makeDefault position={[0, 0, 12]} fov={50} />
+      <PerspectiveCamera ref={cam} makeDefault />
+
       <mesh ref={ref}>
         <sphereGeometry args={args} />
         <meshPhysicalMaterial
