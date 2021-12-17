@@ -25,8 +25,10 @@ export function Paddle({ dimensions, side }: IPaddleProps) {
       (pushed[0] ? -0.25 : 0.25) * (side === ESide.LEFT ? 1 : -1)
     );
 
-    api.current.position.set(side === ESide.LEFT ? 5 : -5, -7, 0);
+    api.current.position.set(side === ESide.LEFT ? 5 : -5, -11, 0);
   });
 
-  return <Block ref={api} dimensions={dimensions} material={{ restitution: 1 }} />;
+  return (
+    <Block ref={api} dimensions={dimensions} material={{ restitution: 1 }} />
+  );
 }

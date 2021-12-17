@@ -53,7 +53,7 @@ export function BallAndCollisions({
     api.position.subscribe(
       (p) => (
         cam.current.position.lerp(
-          v.set(p[0], p[1], 18 + Math.max(0, p[1]) / 2),
+          v.set(p[0], p[1], 28 + Math.max(0, p[1]) / 2),
           0.05
         ),
         cam.current.lookAt(0, 0, 0)
